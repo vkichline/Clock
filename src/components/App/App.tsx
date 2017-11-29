@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import  ClockFace from '../ClockFace/ClockFace';
 import { setInterval } from 'timers';
 
 const logo = require('./logo.svg');
@@ -20,7 +21,7 @@ class App extends React.Component<{}, ClockState> {
     this.setState({ time: new Date() });
   }
 
-componentDidMount() {
+  componentDidMount() {
     this.secondsTimer = setInterval(() => this.refreshTime(), 1000);
   }
 
@@ -36,7 +37,8 @@ componentDidMount() {
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
-          The time is {this.state.time.toTimeString()}
+          The time is:
+          <ClockFace time={this.state.time} />
         </p>
       </div>
     );
