@@ -4,12 +4,6 @@ import * as React from 'react';
 import './App.css';
 import  ClockFace from '../ClockFace/ClockFace';
 import { setInterval } from 'timers';
-// import { unescape } from 'querystring';
-
-declare function unescape(s: string): string;
-// declare function escape(s: string): string;
-
-const logo = require('./logo.svg');
 
 interface ClockState {
   time: Date;
@@ -25,46 +19,15 @@ class App extends React.Component<{}, ClockState> {
     this.state = { time: new Date(), picture: '' };
   }
 
-  getPicture(cb: Function): void {
+  refresPicture() {
     let hours: number = this.state.time.getUTCHours();
     let minutes: number = this.state.time.getUTCMinutes();
-    let utcTime: string = hours.toString() + ':' + (minutes < 10) ? '0' + minutes.toString() : minutes.toString();
+    let utcTime: string = hours.toString() + ':' + (minutes < 10 ? '0' + minutes.toString() : minutes.toString());
     let url: string = 'http://api.usno.navy.mil/imagery/earth.png?ID=KICHLINE&date=today&time=' + utcTime;
-    let that: App = this;
-
-    // Fetch the latest data.
-    let request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE) {
-            if (request.status === 200) {
-                cb(that, request.response);
-            }
-        } else {
-            // handle error
-        }
-    };
-    request.open('GET', url);
-    request.send();
+    document.body.style.backgroundImage = 'url(' + url + ')';
   }
-
-  refresPicture() {
-    this.getPicture(function (that: App, result: any) {
-      let canvas: HTMLCanvasElement = document.createElement('CANVAS') as HTMLCanvasElement;
-      let ctx = canvas.getContext('2d');
-      if (ctx != null) {
-        canvas.height = 900;  // TODO
-        canvas.width = 1600;  // TODO
-        let image = new Image(900, 1600);
-        image.src = 'data:image/png;base64,' + window.btoa(unescape(encodeURIComponent(result)));
-        
-        ctx.drawImage(image, 0, 0);
-        let dataURL = canvas.toDataURL();
-        that.setState({ picture: dataURL });
-      }
-    });
-  }
-  
-refreshTime() {
+ 
+  refreshTime() {
     this.setState({ time: new Date() });
   }
 
@@ -81,16 +44,10 @@ refreshTime() {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <div className="App-intro">
-          The time is:
+      <div id="App" className="App">
+        <div className="App-time">
           <ClockFace time={this.state.time} />
         </div>
-        <img src={this.state.picture} />
       </div>
     );
   }
