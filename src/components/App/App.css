@@ -13,15 +13,6 @@
   color: white;
 }
 
-.moon-image {
-  margin: 16em 0 0 4em;
-  height: 16em;
-  width: 16em;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 150%;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

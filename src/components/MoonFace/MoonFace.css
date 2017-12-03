@@ -1,0 +1,15 @@
+.moon-section {
+    position: fixed;
+    top: 600px;
+    left: 50px;
+}
+
+.moon-section #moonImage {
+    height: 16em;
+    width: 16em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 166.5%;
+    border-radius: 8em;
+  }
+  
