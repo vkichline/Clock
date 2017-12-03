@@ -316,3 +316,4 @@ ASALocalRun/
 
 # For Mac development
 .DS_Store
+.vscode

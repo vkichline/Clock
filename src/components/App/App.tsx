@@ -1,4 +1,4 @@
-// This app is intended to use data from http://aa.usno.navy.mil/data/docs/api.php to display astronomical info
+// This app is intended to use data from   to display astronomical info
 
 import * as React from 'react';
 import './App.css';
@@ -24,7 +24,10 @@ class App extends React.Component<{}, ClockState> {
     let minutes: number = this.state.time.getUTCMinutes();
     let utcTime: string = hours.toString() + ':' + (minutes < 10 ? '0' + minutes.toString() : minutes.toString());
     let url: string = 'http://api.usno.navy.mil/imagery/earth.png?ID=KICHLINE&date=today&time=' + utcTime;
-    document.body.style.backgroundImage = 'url(' + url + ')';
+    let appElem = document.getElementById('App');
+    if (appElem) {
+      appElem.style.backgroundImage = 'url(' + url + ')';
+    }
   }
  
   refreshTime() {
@@ -42,6 +45,7 @@ class App extends React.Component<{}, ClockState> {
     clearInterval(this.pictureTimer);
   }
 
+  // Note: lunar image w/ phase available at http://api.usno.navy.mil/imagery/moon.png?date=today&time=now
   render() {
     return (
       <div id="App" className="App">
