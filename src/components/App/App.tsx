@@ -3,7 +3,7 @@
 import * as React from 'react';
 import './App.css';
 import  ClockFace from '../ClockFace/ClockFace';
-import  MoonFace from '../MoonFace/MoonFace';
+import  MoonPhase from '../MoonPhase/MoonPhase';
 import { setInterval } from 'timers';
 
 interface ClockState {
@@ -50,14 +50,13 @@ class App extends React.Component<{}, ClockState> {
     clearInterval(this.pictureTimer);
   }
 
-  // Note: lunar image w/ phase available at http://api.usno.navy.mil/imagery/moon.png?date=today&time=now
   render() {
     return (
       <div id="App" className="App">
         <section className="App-time">
           <ClockFace time={this.state.time} />
         </section>
-        <MoonFace />
+        <MoonPhase />
       </div>
     );
   }
