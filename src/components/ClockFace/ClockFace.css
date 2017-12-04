@@ -5,14 +5,25 @@
 
 .clock-face .time {
     display: inline-block;
-    font-size: 400%;
+    font-size: 600%;
+}
+
+.clock-face .dow {
+    display: block;
+    font-size: 200%;
+}
+
+.clock-face .mdy {
+    margin-top: .5em;
+    display: block;
+    font-size: 150%;
 }
 
 .right-box {
     display: inline-block;
     text-align: left;
-    font-size: 150%;
-    width: 4.5em;
+    font-size: 230%;
+    width: 2em;
     margin-left: .1em;
 }
 
