@@ -21,7 +21,7 @@ class MoonPhase extends React.Component {
     let appElem = document.getElementById('moonPhaseImage');
     if (appElem) {
       let utcTime: string = this.getTimeString();
-      let url: string = 'http://api.usno.navy.mil/imagery/moon.png?date=today&time=' + utcTime;
+      let url: string = 'http://api.usno.navy.mil/imagery/moon.png?ID=KICHLINE&date=today&time=' + utcTime;
       appElem.style.backgroundImage = 'url(' + url + ')';
     }
   }
@@ -50,7 +50,7 @@ class MoonPhase extends React.Component {
       let date: string = (now.getMonth() + 1).toString() +
                 '/' + now.getDate().toString() + '/' +
                 now.getFullYear().toString();
-      let url: string = 'http://api.usno.navy.mil/moon/phase?date=' + date + '&nump=1';
+      let url: string = 'http://api.usno.navy.mil/moon/phase?ID=KICHLINE&date=' + date + '&nump=1';
       
       // Fetch the latest data.
       let request = new XMLHttpRequest();
